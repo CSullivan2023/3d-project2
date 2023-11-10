@@ -5,6 +5,8 @@ using UnityEngine;
 public class CharacterMovement : MonoBehaviour
 {
     Rigidbody rb;
+    float movementSpeed = 6f;
+    float jumpForce = 5f;
     
 
     // Start is called before the first frame update
@@ -19,11 +21,11 @@ public class CharacterMovement : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("vertical");
 
-        rb.velocity = new Vector3(horizontalInput * 5f, rb.velocity.y, verticalInput * 5f);
+        rb.velocity = new Vector3(horizontalInput * movementSpeed, rb.velocity.y, verticalInput * movementSpeed);
 
         if (Input.GetButtonDown("Jump"))
         {
-            rb.velocity = new Vector3(rb.velocity.x, 5f, rb.velocity.z);
+            rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
         }
 
        
