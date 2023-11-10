@@ -5,6 +5,7 @@ using UnityEngine;
 public class CharacterMovement : MonoBehaviour
 {
     Rigidbody rb;
+    int wholeNumber = 3;
 
     // Start is called before the first frame update
     void Start()
