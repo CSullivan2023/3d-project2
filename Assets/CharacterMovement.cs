@@ -5,8 +5,8 @@ using UnityEngine;
 public class CharacterMovement : MonoBehaviour
 {
     Rigidbody rb;
-    float movementSpeed = 6f;
-    float jumpForce = 5f;
+    [SerializeField] float movementSpeed = 6f;
+    [SerializeField] float jumpForce = 5f;
     
 
     // Start is called before the first frame update
