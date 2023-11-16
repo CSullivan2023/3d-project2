@@ -7,6 +7,9 @@ public class CharacterMovement : MonoBehaviour
     Rigidbody rb;
     [SerializeField] float movementSpeed = 6f;
     [SerializeField] float jumpForce = 5f;
+
+    [SerializeField] Transform groundCheck;
+    [SerializeField] LayerMask ground;
     
 
     // Start is called before the first frame update
@@ -23,7 +26,7 @@ public class CharacterMovement : MonoBehaviour
 
         rb.velocity = new Vector3(horizontalInput * movementSpeed, rb.velocity.y, verticalInput * movementSpeed);
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && IsGrounded())
         {
             rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
         }
@@ -31,4 +34,8 @@ public class CharacterMovement : MonoBehaviour
        
     }
 
+    bool IsGrounded()
+    {
+        return Physics.CheckSphere(groundCheck.position, .1f, ground);
+    }
 }
