@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class playerlife : MonoBehaviour
 {
+    bool dead = false;
     private void Update()
     {
-        if (transform.position.y < -1f)
+        if (transform.position.y < -1f && !dead)
         {
             die();
         }
@@ -22,6 +24,8 @@ public class playerlife : MonoBehaviour
         GetComponent<MeshRenderer>().enabled = false;
         GetComponent<Rigidbody>().isKinematic = true;
         Invoke(nameof(ReloadLevel), 1.3f);
+        dead = true;
+        Debug.Log("ded");
     }
 
     void ReloadLevel()
