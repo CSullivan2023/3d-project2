@@ -5,9 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class playerlife : MonoBehaviour
 {
+    private void Update()
+    {
+        if (transform.position.y < -1f)
+        {
+            die();
+        }
+    }
     // Start is called before the first frame update
-  
-    
+
+
 
     // Update is called once per frame
     void die()
