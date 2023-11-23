@@ -10,12 +10,21 @@ public class CharacterMovement : MonoBehaviour
 
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask ground;
+
+   [SerializeField] float maxSpeed = 1.0f;
+    [SerializeField] float rotation = 0.0f;
+    [SerializeField] float camRotation = 0;
+    [SerializeField] float rotationSpeed = 2.0f;
+    [SerializeField] float camRotationSpeed = 1.5f;
+    GameObject cam;
     
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+
+        cam = GameObject.Find("Main Camera");
     }
 
     // Update is called once per frame
@@ -31,6 +40,11 @@ public class CharacterMovement : MonoBehaviour
             rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
         }
 
+        rotation = rotation + Input.GetAxis("Mouse X") * rotationSpeed;
+        transform.rotation = Quaternion.Euler(new Vector3(0.0f, rotationSpeed, 0.0f));
+
+        camRotation = camRotation + Input.GetAxis("Mouse Y") * camRotationSpeed;
+        cam.transform.localRotation = Quaternion.Euler(new Vector3(camRotation, 0.0f, 0.0f));
        
     }
 
