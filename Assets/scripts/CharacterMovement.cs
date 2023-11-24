@@ -17,6 +17,7 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] float rotationSpeed = 2.0f;
     [SerializeField] float camRotationSpeed = 1.5f;
     GameObject cam;
+    [SerializeField] public Animation anim;
     
 
     // Start is called before the first frame update
