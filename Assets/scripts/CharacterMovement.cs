@@ -17,13 +17,16 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] float rotationSpeed = 2.0f;
     [SerializeField] float camRotationSpeed = 1.5f;
     GameObject cam;
-    [SerializeField] public Animation anim;
+    [SerializeField]  Animator myAnim;
 
     
 
     // Start is called before the first frame update
     void Start()
     {
+        myAnim = GetComponentInChildren<Animator>();
+        myAnim.SetFloat("speed", newVelocity.magnitude);
+
         rb = GetComponent<Rigidbody>();
 
         cam = GameObject.Find("Main Camera");
