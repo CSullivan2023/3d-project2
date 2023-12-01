@@ -25,7 +25,7 @@ public class CharacterMovement : MonoBehaviour
     void Start()
     {
         myAnim = GetComponentInChildren<Animator>();
-        myAnim.SetFloat("speed", newVelocity.magnitude);
+        myAnim.SetFloat("speed", rb.velocity.magnitude);
 
         rb = GetComponent<Rigidbody>();
 
@@ -40,8 +40,10 @@ public class CharacterMovement : MonoBehaviour
 
         rb.velocity = new Vector3(horizontalInput * movementSpeed, rb.velocity.y, verticalInput * movementSpeed);
 
+       
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
+            myAnim.SetTrigger("jumped");
             rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
         }
 
@@ -55,6 +57,8 @@ public class CharacterMovement : MonoBehaviour
 
     bool IsGrounded()
     {
+        myAnim.SetBool("IsGrounded", IsGrounded);
         return Physics.CheckSphere(groundCheck.position, .1f, ground);
+        
     }
 }
