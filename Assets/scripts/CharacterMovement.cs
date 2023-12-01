@@ -17,16 +17,13 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] float rotationSpeed = 2.0f;
     [SerializeField] float camRotationSpeed = 1.5f;
     GameObject cam;
-    [SerializeField]  Animator myAnim;
+    [SerializeField] public Animator myAnim;
 
     
 
     // Start is called before the first frame update
     void Start()
     {
-        myAnim = GetComponentInChildren<Animator>();
-        myAnim.SetFloat("speed", rb.velocity.magnitude);
-
         rb = GetComponent<Rigidbody>();
 
         cam = GameObject.Find("Main Camera");
@@ -40,11 +37,10 @@ public class CharacterMovement : MonoBehaviour
 
         rb.velocity = new Vector3(horizontalInput * movementSpeed, rb.velocity.y, verticalInput * movementSpeed);
 
-       
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
-            myAnim.SetTrigger("jumped");
             rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
+            myAnim.SetTrigger("jumped");
         }
 
         rotation = rotation + Input.GetAxis("Mouse X") * rotationSpeed;
@@ -52,12 +48,13 @@ public class CharacterMovement : MonoBehaviour
 
         camRotation = camRotation + Input.GetAxis("Mouse Y") * camRotationSpeed;
         cam.transform.localRotation = Quaternion.Euler(new Vector3(camRotation, 0.0f, 0.0f));
+        myAnim.SetBool("isOnGround", IsGrounded());
+        myAnim.SetFloat("speed", rb.velocity.magnitude);
        
     }
 
     bool IsGrounded()
     {
         return Physics.CheckSphere(groundCheck.position, .1f, ground);
-        
     }
 }
