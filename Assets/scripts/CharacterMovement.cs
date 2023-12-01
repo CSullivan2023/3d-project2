@@ -57,7 +57,6 @@ public class CharacterMovement : MonoBehaviour
 
     bool IsGrounded()
     {
-        myAnim.SetBool("IsGrounded", IsGrounded);
         return Physics.CheckSphere(groundCheck.position, .1f, ground);
         
     }
