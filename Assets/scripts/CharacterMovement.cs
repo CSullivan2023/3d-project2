@@ -17,7 +17,11 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] float rotationSpeed = 2.0f;
     [SerializeField] float camRotationSpeed = 1.5f;
     GameObject cam;
+<<<<<<< HEAD
     [SerializeField] public Animator anim;
+=======
+    [SerializeField] public Animator myAnim;
+>>>>>>> 39a9fc01ff01502ee3ce56a9bea0055ef5733c16
 
     
 
@@ -40,6 +44,7 @@ public class CharacterMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
             rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
+            myAnim.SetTrigger("jumped");
         }
 
         rotation = rotation + Input.GetAxis("Mouse X") * rotationSpeed;
@@ -47,6 +52,8 @@ public class CharacterMovement : MonoBehaviour
 
         camRotation = camRotation + Input.GetAxis("Mouse Y") * camRotationSpeed;
         cam.transform.localRotation = Quaternion.Euler(new Vector3(camRotation, 0.0f, 0.0f));
+        myAnim.SetBool("isOnGround", IsGrounded());
+        myAnim.SetFloat("speed", rb.velocity.magnitude);
        
     }
 
