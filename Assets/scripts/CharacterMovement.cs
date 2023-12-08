@@ -17,11 +17,10 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] float rotationSpeed = 2.0f;
     [SerializeField] float camRotationSpeed = 1.5f;
     GameObject cam;
-<<<<<<< HEAD
+
     [SerializeField] public Animator anim;
-=======
+
     [SerializeField] public Animator myAnim;
->>>>>>> 39a9fc01ff01502ee3ce56a9bea0055ef5733c16
 
     
 
